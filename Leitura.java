@@ -7,44 +7,36 @@ public class Leitura {
     }
 
     public static String perguntarEntrega(Sorvete sorvete, String endereco) throws MinhaEx.CorrigirValorIntException {
-        try {
-            System.out.println("Deseja entrega?");
-            System.out.println("1. Sim");
-            System.out.println("2. Não");
-            System.out.print("Escolha uma opção: ");
+        System.out.println("Deseja entrega?");
+        System.out.println("1. Sim");
+        System.out.println("2. Não");
+        System.out.print("Escolha uma opção: ");
 
-            int opcaoEntrega = lerInteiro();
+        int opcaoEntrega = lerInteiro();
 
-            switch (opcaoEntrega) {
-                case 1:
-                    endereco = sorvete.coletarEndereco();
-                    System.out.println("Endereço coletado para entrega.");
-                    return endereco;
-                case 2:
-                    System.out.println("Entrega não solicitada.");
-                    break;
-                default:
-                    throw new MinhaEx.CorrigirValorIntException("Opção inválida. Entrega não solicitada.",
-                            opcaoEntrega);
-            }
-        } catch (MinhaEx.CorrigirValorIntException e) {
-            throw new MinhaEx.CorrigirValorIntException("Valor inteiro inválido: " + e.getMessage(), e);
+        switch (opcaoEntrega) {
+            case 1:
+                endereco = sorvete.coletarEndereco();
+                System.out.println("Endereço coletado para entrega.");
+                return endereco;
+            case 2:
+                System.out.println("Entrega não solicitada.");
+                break;
+            default:
+                throw new MinhaEx.CorrigirValorIntException("Opção inválida. Entrega não solicitada.", opcaoEntrega);
         }
-        return null; // Retorna null se a entrega não for solicitada
+
+        return "deu ruim"; // Retorna null se a entrega não for solicitada
     }
 
     public static int lerInteiro() throws MinhaEx.CorrigirValorIntException {
         System.out.print("Digite um número inteiro: ");
-        if (scanner.hasNextLine()) {
-            String entrada = scanner.nextLine();
-            try {
-                int numeroInteiro = Integer.parseInt(entrada);
-                return numeroInteiro;
-            } catch (NumberFormatException e) {
-                throw new MinhaEx.CorrigirValorIntException("Valor inteiro inválido: " + entrada, e);
-            }
-        } else {
-            throw new MinhaEx.CorrigirValorIntException("Nenhuma linha encontrada para leitura.", scanner);
+        String entrada = scanner.next();
+        try {
+            int numeroInteiro = Integer.parseInt(entrada);
+            return numeroInteiro;
+        } catch (NumberFormatException e) {
+            throw new MinhaEx.CorrigirValorIntException("Valor inteiro inválido: " + entrada, e);
         }
     }
     
@@ -63,6 +55,7 @@ public class Leitura {
             throw new MinhaEx.CorrigirValorDecimalException("Nenhuma linha encontrada para leitura.", scanner);
         }
     }
+
     public static String lerLinhaTexto() throws MinhaEx.InformacaoInsuficienteException {
         System.out.print("Escreva: ");
         if (scanner.hasNextLine()) {
@@ -71,7 +64,7 @@ public class Leitura {
             throw new MinhaEx.InformacaoInsuficienteException("Nenhuma linha encontrada para leitura.", scanner);
         }
     }
-    
+
     public static boolean lerBooleano() throws MinhaEx.CorrigirValorBooleanoException {
         System.out.print("Digite 0 para 'false' ou 1 para 'true': ");
         if (scanner.hasNextLine()) {

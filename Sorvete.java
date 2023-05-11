@@ -27,34 +27,29 @@ class Sorvete implements Entrega {
     }
 
     @Override
-    public String coletarEndereço() {
+    public String coletarEndereco() {
         Scanner scanner = new Scanner(System.in);
-    
+
         System.out.println("Coletar Endereço de Entrega:");
-    
-        System.out.print("Digite o nome do destinatário: ");
-        String nomeDestinatario = scanner.nextLine();
-    
+
         System.out.print("Digite a rua: ");
         String rua = scanner.nextLine();
-    
+
         System.out.print("Digite o número: ");
         String numero = scanner.nextLine();
-    
+
         System.out.print("Digite o bairro: ");
         String bairro = scanner.nextLine();
-    
+
         String endereco = rua + ", " + numero + ", " + bairro;
-           
-    
+
         scanner.close();
         return endereco;
     }
-    
 
     @Override
     public double calcularTaxaEntrega() {
-      
+
         return 0.0;
     }
 

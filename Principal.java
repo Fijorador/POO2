@@ -3,9 +3,10 @@ public class Principal {
         int opcao = 0;
         String enderecoEntrega = null;
 
-
         while (opcao != 4) {
             try {
+                enderecoEntrega = null; // Definir enderecoEntrega como null no início de cada iteração
+
                 System.out.println("Menu:");
                 System.out.println("1. Casquinha");
                 System.out.println("2. Cascao");
@@ -33,7 +34,6 @@ public class Principal {
                         cascao.exibirDetalhes();
                         break;
                     case 3:
-                    
                         Sundae sundae = Leitura.criarSundae();
                         enderecoEntrega = Leitura.perguntarEntrega(sundae, enderecoEntrega);
                         if (enderecoEntrega != null) {
@@ -47,10 +47,6 @@ public class Principal {
                     default:
                         System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
                         break;
-                }
-
-                if (opcao == 4) {
-                    break; // Saia do loop quando a opção 4 for selecionada
                 }
             } catch (MinhaEx.CorrigirValorIntException e) {
                 System.out.println(e.getMessage());

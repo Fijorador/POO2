@@ -40,26 +40,5 @@ class Sundae extends Sorvete {
         System.out.println("Tem cobertura: " + temCobertura);
         System.out.println("Tem frutas: " + temFrutas);
     }
-    @Override
-    public String coletarEndereço() {
-        Scanner scanner = new Scanner(System.in);
-    
-        System.out.println("Coletar Endereço de Entrega:");
-    
-        System.out.print("Digite a rua: ");
-        String rua = scanner.nextLine();
-    
-        System.out.print("Digite o número: ");
-        String numero = scanner.nextLine();
-    
-        System.out.print("Digite o bairro: ");
-        String bairro = scanner.nextLine();
-    
-        String endereco = rua + ", " + numero + ", " + bairro;
-           
-    
-        scanner.close();
-        return endereco;
-    }
-    
+
 }

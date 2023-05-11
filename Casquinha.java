@@ -40,26 +40,5 @@ class Casquinha extends Sorvete {
     public double calcularTaxaEntrega() {
         return 0.3 * getPreco();
     }
-    @Override
-    public String coletarEndereço() {
-        Scanner scanner = new Scanner(System.in);
-    
-        System.out.println("Coletar Endereço de Entrega:");
-    
-        System.out.print("Digite a rua: ");
-        String rua = scanner.nextLine();
-    
-        System.out.print("Digite o número: ");
-        String numero = scanner.nextLine();
-    
-        System.out.print("Digite o bairro: ");
-        String bairro = scanner.nextLine();
-    
-        String endereco = rua + ", " + numero + ", " + bairro;
-           
-    
-        scanner.close();
-        return endereco;
-    }
-    
+
 }
