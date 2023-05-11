@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 public class Leitura {
     private Scanner scanner;
 
@@ -7,25 +6,25 @@ public class Leitura {
         scanner = new Scanner(System.in);
     }
 
-    public int lerInteiro() throws CorrigirValorIntException {
+    public int lerInteiro() throws MinhaEx.CorrigirValorIntException {
         System.out.print("Digite um número inteiro: ");
         String entrada = scanner.nextLine();
         try {
             int numeroInteiro = Integer.parseInt(entrada);
             return numeroInteiro;
         } catch (NumberFormatException e) {
-            throw new CorrigirValorIntException("Valor inteiro inválido: " + entrada);
+            throw new MinhaEx.CorrigirValorIntException("Valor inteiro inválido: " + entrada);
         }
     }
 
-    public double lerDecimal() throws CorrigirValorDecimalException {
+    public double lerDecimal() throws MinhaEx.CorrigirValorDecimalException {
         System.out.print("Digite um número decimal: ");
         String entrada = scanner.nextLine();
         try {
             double numeroDecimal = Double.parseDouble(entrada);
             return numeroDecimal;
         } catch (NumberFormatException e) {
-            throw new CorrigirValorDecimalException("Valor decimal inválido: " + entrada);
+            throw new MinhaEx.CorrigirValorDecimalException("Valor decimal inválido: " + entrada);
         }
     }
 
@@ -36,18 +35,18 @@ public class Leitura {
                 String linhaTexto = scanner.nextLine();
 
                 if (linhaTexto.length() < 3) {
-                    throw new InformacaoInsuficienteException(
+                    throw new MinhaEx.InformacaoInsuficienteException(
                             "Informação insuficiente. Digite pelo menos 3 caracteres.");
                 }
 
                 return linhaTexto.toLowerCase();
-            } catch (InformacaoInsuficienteException e) {
+            } catch (MinhaEx.InformacaoInsuficienteException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public boolean lerBooleano() throws CorrigirValorBooleanoException {
+    public boolean lerBooleano() throws MinhaEx.CorrigirValorBooleanoException {
         System.out.print("Digite 0 para 'false' ou 1 para 'true': ");
         String entrada = scanner.nextLine();
         if (entrada.equals("0")) {
@@ -55,7 +54,7 @@ public class Leitura {
         } else if (entrada.equals("1")) {
             return true;
         } else {
-            throw new CorrigirValorBooleanoException("Valor booleano inválido: " + entrada);
+            throw new MinhaEx.CorrigirValorBooleanoException("Valor booleano inválido: " + entrada);
         }
     }
 
@@ -82,7 +81,7 @@ public class Leitura {
 
             System.out.print("O sundae tem frutas? (true/false): ");
             temFrutas = leitura.lerBooleano();
-        } catch (CorrigirValorDecimalException | CorrigirValorBooleanoException e) {
+        } catch (MinhaEx.CorrigirValorDecimalException | MinhaEx.CorrigirValorBooleanoException e) {
             System.out.println("Ocorreu um erro ao ler os valores. Por favor, verifique sua entrada.");
             e.printStackTrace();
         }
@@ -110,7 +109,7 @@ public class Leitura {
 
             System.out.print("O cascão tem granulado? (true/false): ");
             granulado = leitura.lerBooleano();
-        } catch (CorrigirValorDecimalException | CorrigirValorIntException | CorrigirValorBooleanoException e) {
+        } catch (MinhaEx.CorrigirValorDecimalException | MinhaEx.CorrigirValorIntException | MinhaEx.CorrigirValorBooleanoException e) {
             System.out.println("Ocorreu um erro ao ler os valores. Por favor, verifique sua entrada.");
             e.printStackTrace();
         }
@@ -139,7 +138,7 @@ public class Leitura {
 
             System.out.print("A casquinha é crocante? (true/false): ");
             crocante = leitura.lerBooleano();
-        } catch (CorrigirValorDecimalException | CorrigirValorBooleanoException e) {
+        } catch (MinhaEx.CorrigirValorDecimalException | MinhaEx.CorrigirValorBooleanoException e) {
             System.out.println("Ocorreu um erro ao ler os valores. Por favor, verifique sua entrada.");
             e.printStackTrace();
         }
