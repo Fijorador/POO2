@@ -33,4 +33,14 @@ class Cascao extends Sorvete {
        
         return 0;
     }
+
+    public void exibirDetalhes() {
+        System.out.println("Detalhes do casção:");
+        System.out.println("Sabor: " + getSabor());
+        System.out.println("Preço: " + getPreco());
+        System.out.println("Quantidade adicional: " + quantidadeAdicional);
+        System.out.println("Granulado: " + granulado);
+    }
+    
+    
 }

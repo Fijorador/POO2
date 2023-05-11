@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Leitura {
     private Scanner scanner;
 
@@ -7,15 +8,18 @@ public class Leitura {
     }
 
     public int lerInteiro() throws MinhaEx.CorrigirValorIntException {
+        scanner.nextLine(); // Limpar o buffer
         System.out.print("Digite um número inteiro: ");
+       
         String entrada = scanner.nextLine();
         try {
             int numeroInteiro = Integer.parseInt(entrada);
             return numeroInteiro;
         } catch (NumberFormatException e) {
-            throw new MinhaEx.CorrigirValorIntException("Valor inteiro inválido: " + entrada);
+            throw new MinhaEx.CorrigirValorIntException("Valor inteiro inválido: " + entrada, e);
         }
     }
+    
 
     public double lerDecimal() throws MinhaEx.CorrigirValorDecimalException {
         System.out.print("Digite um número decimal: ");
@@ -24,7 +28,7 @@ public class Leitura {
             double numeroDecimal = Double.parseDouble(entrada);
             return numeroDecimal;
         } catch (NumberFormatException e) {
-            throw new MinhaEx.CorrigirValorDecimalException("Valor decimal inválido: " + entrada);
+            throw new MinhaEx.CorrigirValorDecimalException("Valor decimal inválido: " + entrada, e);
         }
     }
 
@@ -36,7 +40,7 @@ public class Leitura {
 
                 if (linhaTexto.length() < 3) {
                     throw new MinhaEx.InformacaoInsuficienteException(
-                            "Informação insuficiente. Digite pelo menos 3 caracteres.");
+                            "Informação insuficiente. Digite pelo menos 3 caracteres.", linhaTexto);
                 }
 
                 return linhaTexto.toLowerCase();
@@ -54,7 +58,7 @@ public class Leitura {
         } else if (entrada.equals("1")) {
             return true;
         } else {
-            throw new MinhaEx.CorrigirValorBooleanoException("Valor booleano inválido: " + entrada);
+            throw new MinhaEx.CorrigirValorBooleanoException("Valor booleano inválido: " + entrada, entrada);
         }
     }
 
@@ -73,15 +77,12 @@ public class Leitura {
         boolean temFrutas = false;
 
         try {
-            System.out.print("Digite o preço do sundae: ");
-            preco = leitura.lerDecimal();
-
             System.out.print("O sundae tem cobertura? (true/false): ");
             temCobertura = leitura.lerBooleano();
 
             System.out.print("O sundae tem frutas? (true/false): ");
             temFrutas = leitura.lerBooleano();
-        } catch (MinhaEx.CorrigirValorDecimalException | MinhaEx.CorrigirValorBooleanoException e) {
+        } catch (MinhaEx.CorrigirValorBooleanoException e) {
             System.out.println("Ocorreu um erro ao ler os valores. Por favor, verifique sua entrada.");
             e.printStackTrace();
         }
@@ -101,15 +102,13 @@ public class Leitura {
         boolean granulado = false;
 
         try {
-            System.out.print("Digite o preço do cascão: ");
-            preco = leitura.lerDecimal();
 
             System.out.print("Digite a quantidade adicional: ");
             quantidadeAdicional = leitura.lerInteiro();
 
             System.out.print("O cascão tem granulado? (true/false): ");
             granulado = leitura.lerBooleano();
-        } catch (MinhaEx.CorrigirValorDecimalException | MinhaEx.CorrigirValorIntException | MinhaEx.CorrigirValorBooleanoException e) {
+        } catch (MinhaEx.CorrigirValorIntException | MinhaEx.CorrigirValorBooleanoException e) {
             System.out.println("Ocorreu um erro ao ler os valores. Por favor, verifique sua entrada.");
             e.printStackTrace();
         }
@@ -130,15 +129,13 @@ public class Leitura {
         boolean crocante = false;
 
         try {
-            System.out.print("Digite o preço da casquinha: ");
-            preco = leitura.lerDecimal();
 
             System.out.print("Digite o formato da casquinha: (Copo Baixo / Copo Alto) ");
             formato = leitura.lerLinhaTexto();
 
             System.out.print("A casquinha é crocante? (true/false): ");
             crocante = leitura.lerBooleano();
-        } catch (MinhaEx.CorrigirValorDecimalException | MinhaEx.CorrigirValorBooleanoException e) {
+        } catch (MinhaEx.CorrigirValorBooleanoException e) {
             System.out.println("Ocorreu um erro ao ler os valores. Por favor, verifique sua entrada.");
             e.printStackTrace();
         }

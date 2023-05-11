@@ -1,31 +1,36 @@
-public class MinhaEx Exception{
-    private int valorOpcao;
-    private int numero;
+public class MinhaEx extends Exception {
+    private Object objeto;
 
-    public MinhaEx(String mensagem, int numero) {
+    public MinhaEx(String mensagem, Object objeto) {
         super(mensagem);
-        this.numero = numero;
+        this.objeto = objeto;
     }
 
-    public int getValorOpcao() {
-        return valorOpcao;
+    public Object getObjeto() {
+        return objeto;
     }
 
-    public static class CorrigirValorDecimalException extends Exception {
-        public CorrigirValorDecimalException(String mensagem) {
-            super(mensagem);
+    public static class CorrigirValorIntException extends MinhaEx {
+        public CorrigirValorIntException(String mensagem, Object objeto) {
+            super(mensagem, objeto);
         }
     }
 
-    public static class CorrigirValorBooleanoException extends Exception {
-        public CorrigirValorBooleanoException(String mensagem) {
-            super(mensagem);
+    public static class CorrigirValorDecimalException extends MinhaEx {
+        public CorrigirValorDecimalException(String mensagem, Object objeto) {
+            super(mensagem, objeto);
         }
     }
 
-    public static class InformacaoInsuficienteException extends Exception {
-        public InformacaoInsuficienteException(String mensagem) {
-            super(mensagem);
+    public static class CorrigirValorBooleanoException extends MinhaEx {
+        public CorrigirValorBooleanoException(String mensagem, Object objeto) {
+            super(mensagem, objeto);
+        }
+    }
+
+    public static class InformacaoInsuficienteException extends MinhaEx {
+        public InformacaoInsuficienteException(String mensagem, Object objeto) {
+            super(mensagem, objeto);
         }
     }
 }

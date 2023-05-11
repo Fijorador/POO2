@@ -33,4 +33,13 @@ class Sundae extends Sorvete {
        
         return 0;
     }
+   public void exibirDetalhes() {
+    System.out.println("Detalhes do sundae:");
+    System.out.println("Sabor: " + getSabor());
+    System.out.println("Preço: " + getPreco());
+    System.out.println("Tem cobertura: " + temCobertura);
+    System.out.println("Tem frutas: " + temFrutas);
+}
+
+    
 }
