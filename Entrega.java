@@ -1,6 +1,7 @@
 public interface Entrega {
-    void coletarEndereco();
+    Entrega coletarEndereco();
+    void exibirEndereço();
     double calcularTaxaEntrega();
     void exibirDetalhes();
-    void exibirEndereco();
+   
 }

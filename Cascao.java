@@ -6,7 +6,8 @@ class Cascao extends Sorvete {
         super(sabor, preco);
         this.quantidadeAdicional = quantidadeAdicional;
         this.granulado = granulado;
-    }    
+        setPreco(getPreco() + calcularTaxaEntrega());
+    }
 
     public int getQuantidadeAdicional() {
         return quantidadeAdicional;
@@ -25,22 +26,17 @@ class Cascao extends Sorvete {
     }
 
     @Override
-    public void coletarEndereco() {
+    public Entrega coletarEndereco() {
         
     }
+
     @Override
     public double calcularTaxaEntrega() {
-       
-        return 0;
+        return 0.05 * getPreco();
     }
 
+    @Override
     public void exibirDetalhes() {
-        System.out.println("Detalhes do casção:");
-        System.out.println("Sabor: " + getSabor());
-        System.out.println("Preço: " + getPreco());
-        System.out.println("Quantidade adicional: " + quantidadeAdicional);
-        System.out.println("Granulado: " + granulado);
-    }
-    
-    
-}
+        System.out.println("Detalhes do cascao:");
+       
+    }}

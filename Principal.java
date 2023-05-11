@@ -1,7 +1,9 @@
 public class Principal {
-    public static void main(String[] args) throws MinhaEx.CorrigirValorIntException {
+    public static void main(String[] args) {
         Leitura leitura = new Leitura();
         int opcao = 0;
+        String enderecoEntrega = null;
+
 
         while (opcao != 4) {
             try {
@@ -10,59 +12,49 @@ public class Principal {
                 System.out.println("2. Cascao");
                 System.out.println("3. Sundae");
                 System.out.println("4. Sair");
-                System.out.print("Escolha uma opção:\n ");
+                System.out.print("Escolha uma opção: ");
 
                 opcao = leitura.lerInteiro();
 
                 switch (opcao) {
                     case 1:
                         Casquinha casquinha = Leitura.criarCasquinha();
-                        perguntarEntrega(casquinha, leitura);
+                        enderecoEntrega = Leitura.perguntarEntrega(casquinha, enderecoEntrega);
+                        if (enderecoEntrega != null) {
+                            System.out.println("Entrega: " + enderecoEntrega);
+                        }
                         casquinha.exibirDetalhes();
                         break;
                     case 2:
                         Cascao cascao = Leitura.criarCascao();
-                        perguntarEntrega(cascao, leitura);
+                        enderecoEntrega = Leitura.perguntarEntrega(cascao, enderecoEntrega);
+                        if (enderecoEntrega != null) {
+                            System.out.println("Entrega: " + enderecoEntrega);
+                        }
                         cascao.exibirDetalhes();
                         break;
                     case 3:
                         Sundae sundae = Leitura.criarSundae();
-                        perguntarEntrega(sundae, leitura);
+                        enderecoEntrega = Leitura.perguntarEntrega(sundae, enderecoEntrega);
+                        if (enderecoEntrega != null) {
+                            System.out.println("Entrega: " + enderecoEntrega);
+                        }
                         sundae.exibirDetalhes();
                         break;
                     case 4:
                         System.out.println("Saindo...");
                         break;
+                    default:
+                        System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
+                        break;
+                }
+
+                if (opcao == 4) {
+                    break; // Saia do loop quando a opção 4 for selecionada
                 }
             } catch (MinhaEx.CorrigirValorIntException e) {
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    public static void perguntarEntrega(Entrega entrega, Leitura leitura) throws MinhaEx.CorrigirValorIntException {
-        try {
-            System.out.println("Deseja entrega?");
-            System.out.println("1. Sim");
-            System.out.println("2. Não");
-            System.out.print("Escolha uma opção: ");
-
-            int opcaoEntrega = leitura.lerInteiro();
-
-            switch (opcaoEntrega) {
-                case 1:
-                    entrega.coletarEndereco();
-                    System.out.println("Endereço coletado para entrega.");
-                    break;
-                case 2:
-                    System.out.println("Entrega não solicitada.");
-                    break;
-                default:
-                    throw new MinhaEx.CorrigirValorIntException("Opção inválida. Entrega não solicitada.",
-                            opcaoEntrega);
-            }
-        } catch (MinhaEx.CorrigirValorIntException e) {
-            throw new MinhaEx.CorrigirValorIntException("Valor decimal inválido: " + e.getMessage(), e);
         }
     }
 }

@@ -6,6 +6,7 @@ class Sundae extends Sorvete {
         super(sabor, preco);
         this.temCobertura = temCobertura;
         this.temFrutas = temFrutas;
+        setPreco(getPreco() + calcularTaxaEntrega());
     }
 
     public boolean isTemCobertura() {
@@ -26,20 +27,20 @@ class Sundae extends Sorvete {
 
     @Override
     public void coletarEndereco() {
-       
+        // Implementação da coleta de endereço para Sundae
     }
+
     @Override
     public double calcularTaxaEntrega() {
-       
-        return 0;
+        return 0.07 * getPreco();
     }
-   public void exibirDetalhes() {
-    System.out.println("Detalhes do sundae:");
-    System.out.println("Sabor: " + getSabor());
-    System.out.println("Preço: " + getPreco());
-    System.out.println("Tem cobertura: " + temCobertura);
-    System.out.println("Tem frutas: " + temFrutas);
-}
 
-    
+    @Override
+    public void exibirDetalhes() {
+        System.out.println("Detalhes do sundae:");
+        System.out.println("Sabor: " + getSabor());
+        System.out.println("Preço: R$" + getPreco());
+        System.out.println("Tem cobertura: " + temCobertura);
+        System.out.println("Tem frutas: " + temFrutas);
+    }
 }

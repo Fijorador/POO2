@@ -6,6 +6,7 @@ class Casquinha extends Sorvete {
         super(sabor, preco);
         this.formato = formato;
         this.crocante = crocante;
+        setPreco(getPreco() + 5.00);
     }
 
     public String getFormato() {
@@ -24,18 +25,17 @@ class Casquinha extends Sorvete {
         this.crocante = crocante;
     }
 
+    @Override
     public void exibirDetalhes() {
-        System.out.println("Detalhes da casquinha:");
+        System.out.println("\nDetalhes da casquinha:");
         System.out.println("Sabor: " + getSabor());
-        System.out.println("Preço: " + getPreco());
+        System.out.println("Preço: R$" + getPreco());
         System.out.println("Formato: " + formato);
         System.out.println("Crocante: " + crocante);
     }
 
     @Override
     public double calcularTaxaEntrega() {
-
-        return 0;
+        return 0.3 * getPreco();
     }
-
 }

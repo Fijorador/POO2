@@ -3,6 +3,9 @@ import java.util.Scanner;
 class Sorvete implements Entrega {
     private String sabor;
     private double preco;
+    private String endereco;
+    private String numero;
+    private String bairro;
 
     public Sorvete(String sabor, double preco) {
         this.sabor = sabor;
@@ -26,7 +29,7 @@ class Sorvete implements Entrega {
     }
 
     @Override
-    public void coletarEndereco() {
+    public static Entrega perguntarEntrega(Sorvete sorvete, Entrega endereco) throws MinhaEx.CorrigirValorIntException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Coletar Endereço de Entrega:");
@@ -35,15 +38,15 @@ class Sorvete implements Entrega {
         String nomeDestinatario = scanner.nextLine();
 
         System.out.print("Digite o endereço: ");
-        String endereco = scanner.nextLine();
+        endereco = scanner.nextLine();
 
         System.out.print("Digite o número: ");
-        String numero = scanner.nextLine();
+        numero = scanner.nextLine();
 
         System.out.print("Digite o bairro: ");
-        String bairro = scanner.nextLine();
+        bairro = scanner.nextLine();
 
-        System.out.println("Endereço de entrega do sorvete:");
+        System.out.println("\nEndereço de entrega do sorvete:");
         System.out.println("Nome do destinatário: " + nomeDestinatario);
         System.out.println("Endereço: " + endereco + ", " + numero);
         System.out.println("Bairro: " + bairro);
@@ -55,15 +58,22 @@ class Sorvete implements Entrega {
 
     @Override
     public double calcularTaxaEntrega() {
-        return 5.00;
+        return 0;
     }
 
     @Override
     public void exibirDetalhes() {
+        System.out.println("Detalhes do sorvete:");
+        System.out.println("Sabor: " + getSabor());
+        System.out.println("Preço: R$" + getPreco());
     }
+
     @Override
     public void exibirEndereco() {
-        System.out.println("Endereço de entrega não disponível para sorvete.");
+        System.out.println("Endereço de entrega do sorvete:");
+        System.out.println("Endereço: " + endereco + ", " + numero);
+        System.out.println("Bairro: " + bairro);
+        System.out.println("Preço total com taxa: R$" + (getPreco() + calcularTaxaEntrega()));
     }
     
 }
