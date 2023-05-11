@@ -1,6 +1,5 @@
 public class Principal {
-    public static void main(String[] args) {
-        Leitura leitura = new Leitura();
+    public static void main(String[] args) throws MinhaEx.InformacaoInsuficienteException {
         int opcao = 0;
         String enderecoEntrega = null;
 
@@ -14,7 +13,7 @@ public class Principal {
                 System.out.println("4. Sair");
                 System.out.print("Escolha uma opção: ");
 
-                opcao = leitura.lerInteiro();
+                opcao = Leitura.lerInteiro();
 
                 switch (opcao) {
                     case 1:
@@ -34,6 +33,7 @@ public class Principal {
                         cascao.exibirDetalhes();
                         break;
                     case 3:
+                    
                         Sundae sundae = Leitura.criarSundae();
                         enderecoEntrega = Leitura.perguntarEntrega(sundae, enderecoEntrega);
                         if (enderecoEntrega != null) {

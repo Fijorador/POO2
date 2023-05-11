@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class Cascao extends Sorvete {
     private int quantidadeAdicional;
     private boolean granulado;
@@ -26,11 +28,6 @@ class Cascao extends Sorvete {
     }
 
     @Override
-    public Entrega coletarEndereco() {
-        
-    }
-
-    @Override
     public double calcularTaxaEntrega() {
         return 0.05 * getPreco();
     }
@@ -38,5 +35,34 @@ class Cascao extends Sorvete {
     @Override
     public void exibirDetalhes() {
         System.out.println("Detalhes do cascao:");
+        System.out.println("Sabor: " + getSabor());
+        System.out.println("Preço: R$" + getPreco());
+        System.out.println("Quantidade adicional: " + quantidadeAdicional);
+        System.out.println("Granulado: " + granulado);
+    }
+    @Override
+    public String coletarEndereço() {
+        Scanner scanner = new Scanner(System.in);
+    
+        System.out.println("Coletar Endereço de Entrega:");
+    
        
-    }}
+        System.out.print("Digite a rua: ");
+        String rua = scanner.nextLine();
+    
+        System.out.print("Digite o número: ");
+        String numero = scanner.nextLine();
+    
+        System.out.print("Digite o bairro: ");
+        String bairro = scanner.nextLine();
+    
+        String endereco = rua + ", " + numero + ", " + bairro;
+           
+    
+        scanner.close();
+        return endereco;
+    }
+    
+
+    
+}

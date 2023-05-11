@@ -1,5 +1,5 @@
 public interface Entrega {
-    Entrega coletarEndereco();
+    String coletarEndereco();
     void exibirEndereço();
     double calcularTaxaEntrega();
     void exibirDetalhes();

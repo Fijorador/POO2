@@ -1,13 +1,12 @@
 import java.util.Scanner;
 
 public class Leitura {
-    private static Scanner scanner;
+    private static Scanner scanner = new Scanner(System.in);
 
     public Leitura() {
-        scanner = new Scanner(System.in);
     }
 
-    public static Entrega perguntarEntrega(Sorvete sorvete, String endereco) throws MinhaEx.CorrigirValorIntException {
+    public static String perguntarEntrega(Sorvete sorvete, String endereco) throws MinhaEx.CorrigirValorIntException {
         try {
             System.out.println("Deseja entrega?");
             System.out.println("1. Sim");
@@ -48,13 +47,13 @@ public class Leitura {
             throw new MinhaEx.CorrigirValorIntException("Nenhuma linha encontrada para leitura.", scanner);
         }
     }
+    
 
     public double lerDecimal() throws MinhaEx.CorrigirValorDecimalException {
         System.out.print("Digite um número decimal: ");
         if (scanner.hasNextLine()) {
             String entrada = scanner.nextLine();
             try {
-
                 double numeroDecimal = Double.parseDouble(entrada);
                 return numeroDecimal;
             } catch (NumberFormatException e) {
@@ -64,17 +63,16 @@ public class Leitura {
             throw new MinhaEx.CorrigirValorDecimalException("Nenhuma linha encontrada para leitura.", scanner);
         }
     }
-
-    public String lerLinhaTexto() {
+    public static String lerLinhaTexto() throws MinhaEx.InformacaoInsuficienteException {
         System.out.print("Escreva: ");
         if (scanner.hasNextLine()) {
             return scanner.nextLine().toLowerCase();
         } else {
-            return "";
+            throw new MinhaEx.InformacaoInsuficienteException("Nenhuma linha encontrada para leitura.", scanner);
         }
     }
-
-    public boolean lerBooleano() throws MinhaEx.CorrigirValorBooleanoException {
+    
+    public static boolean lerBooleano() throws MinhaEx.CorrigirValorBooleanoException {
         System.out.print("Digite 0 para 'false' ou 1 para 'true': ");
         if (scanner.hasNextLine()) {
             String entrada = scanner.nextLine();
@@ -94,11 +92,10 @@ public class Leitura {
         scanner.close();
     }
 
-    public static Sundae criarSundae() {
-        Leitura leitura = new Leitura();
+    public static Sundae criarSundae() throws MinhaEx.InformacaoInsuficienteException {
 
         System.out.print("Digite o sabor do sundae: ");
-        String sabor = leitura.lerLinhaTexto();
+        String sabor = Leitura.lerLinhaTexto();
 
         double preco = 0.0;
         boolean temCobertura = false;
@@ -106,10 +103,10 @@ public class Leitura {
 
         try {
             System.out.print("O sundae tem cobertura? (true/false): ");
-            temCobertura = leitura.lerBooleano();
+            temCobertura = Leitura.lerBooleano();
 
             System.out.print("O sundae tem frutas? (true/false): ");
-            temFrutas = leitura.lerBooleano();
+            temFrutas = Leitura.lerBooleano();
         } catch (MinhaEx.CorrigirValorBooleanoException e) {
             System.out.println("Ocorreu um erro ao ler os valores. Por favor, verifique sua entrada.");
             e.printStackTrace();
@@ -119,11 +116,11 @@ public class Leitura {
 
         return sundae;
     }
-    public static Cascao criarCascao() {
-        Leitura leitura = new Leitura();
+
+    public static Cascao criarCascao() throws MinhaEx.InformacaoInsuficienteException {
 
         System.out.print("Digite o sabor do cascão: ");
-        String sabor = leitura.lerLinhaTexto();
+        String sabor = Leitura.lerLinhaTexto();
 
         double preco = 0.0;
         int quantidadeAdicional = 0;
@@ -132,10 +129,10 @@ public class Leitura {
         try {
 
             System.out.print("Digite a quantidade adicional: ");
-            quantidadeAdicional = leitura.lerInteiro();
+            quantidadeAdicional = Leitura.lerInteiro();
 
             System.out.print("O cascão tem granulado? (true/false): ");
-            granulado = leitura.lerBooleano();
+            granulado = Leitura.lerBooleano();
         } catch (MinhaEx.CorrigirValorIntException
                 | MinhaEx.CorrigirValorBooleanoException e) {
             System.out.println("Ocorreu um erro ao ler os valores. Por favor, verifique sua entrada.");
@@ -146,11 +143,11 @@ public class Leitura {
 
         return cascao;
     }
-    public static Casquinha criarCasquinha() {
-        Leitura leitura = new Leitura();
+
+    public static Casquinha criarCasquinha() throws MinhaEx.InformacaoInsuficienteException {
 
         System.out.print("Digite o sabor da casquinha: ");
-        String sabor = leitura.lerLinhaTexto();
+        String sabor = Leitura.lerLinhaTexto();
 
         double preco = 0.0;
         String formato = "";
@@ -159,10 +156,10 @@ public class Leitura {
         try {
 
             System.out.print("Digite o formato da casquinha: (Copo Baixo / Copo Alto) ");
-            formato = leitura.lerLinhaTexto();
+            formato = Leitura.lerLinhaTexto();
 
             System.out.print("A casquinha é crocante? (true/false): ");
-            crocante = leitura.lerBooleano();
+            crocante = Leitura.lerBooleano();
         } catch (MinhaEx.CorrigirValorBooleanoException e) {
             System.out.println("Ocorreu um erro ao ler os valores. Por favor, verifique sua entrada.");
             e.printStackTrace();
