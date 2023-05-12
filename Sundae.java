@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 class Sundae extends Sorvete {
     private boolean temCobertura;

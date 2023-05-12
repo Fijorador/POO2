@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 class Casquinha extends Sorvete {
     private String formato;

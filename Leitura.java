@@ -6,7 +6,7 @@ public class Leitura {
     public Leitura() {
     }
 
-    public static String perguntarEntrega(Sorvete sorvete, String endereco) throws MinhaEx.CorrigirValorIntException {
+    public static String perguntarEntrega(Sorvete sorvete, String endereco) throws MinhaEx {
         System.out.println("Deseja entrega?");
         System.out.println("1. Sim");
         System.out.println("2. Não");
@@ -23,25 +23,32 @@ public class Leitura {
                 System.out.println("Entrega não solicitada.");
                 break;
             default:
-                throw new MinhaEx.CorrigirValorIntException("Opção inválida. Entrega não solicitada.", opcaoEntrega);
+                throw new MinhaEx("Opção inválida. Entrega não solicitada.", opcaoEntrega);
         }
 
-        return "deu ruim"; // Retorna null se a entrega não for solicitada
+        return "deu ruim";
     }
 
-    public static int lerInteiro() throws MinhaEx.CorrigirValorIntException {
+    public static int lerInteiro() throws MinhaEx {
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Digite um número inteiro: ");
-        String entrada = scanner.next();
+        String entrada = scanner.nextLine();
+    
         try {
             int numeroInteiro = Integer.parseInt(entrada);
             return numeroInteiro;
         } catch (NumberFormatException e) {
-            throw new MinhaEx.CorrigirValorIntException("Valor inteiro inválido: " + entrada, e);
+            System.out.println("Valor inteiro inválido: " + entrada);
+            int valorCorrigido = MinhaEx.corrigirValorInt();
+            return valorCorrigido;
+        } finally {
+            scanner.close();
         }
+        
     }
     
-
-    public double lerDecimal() throws MinhaEx.CorrigirValorDecimalException {
+    
+    public double lerDecimal() throws MinhaEx {
         System.out.print("Digite um número decimal: ");
         if (scanner.hasNextLine()) {
             String entrada = scanner.nextLine();
@@ -49,11 +56,14 @@ public class Leitura {
                 double numeroDecimal = Double.parseDouble(entrada);
                 return numeroDecimal;
             } catch (NumberFormatException e) {
-                throw new MinhaEx.CorrigirValorDecimalException("Valor decimal inválido: " + entrada, e);
+                // throw new MinhaEx.CorrigirValorDecimalException("Valor decimal inválido: " +
+                // entrada, e);
             }
         } else {
-            throw new MinhaEx.CorrigirValorDecimalException("Nenhuma linha encontrada para leitura.", scanner);
+            // throw new MinhaEx.CorrigirValorDecimalException("Nenhuma linha encontrada
+            // para leitura.", scanner);
         }
+        return 0;
     }
 
     public static String lerLinhaTexto() throws MinhaEx.InformacaoInsuficienteException {
@@ -126,8 +136,7 @@ public class Leitura {
 
             System.out.print("O cascão tem granulado? (true/false): ");
             granulado = Leitura.lerBooleano();
-        } catch (MinhaEx.CorrigirValorIntException
-                | MinhaEx.CorrigirValorBooleanoException e) {
+        } catch (MinhaEx e) {
             System.out.println("Ocorreu um erro ao ler os valores. Por favor, verifique sua entrada.");
             e.printStackTrace();
         }

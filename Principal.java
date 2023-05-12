@@ -48,7 +48,7 @@ public class Principal {
                         System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
                         break;
                 }
-            } catch (MinhaEx.CorrigirValorIntException e) {
+            } catch (MinhaEx e) {
                 System.out.println(e.getMessage());
             }
         }
